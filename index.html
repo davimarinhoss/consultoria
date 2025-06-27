@@ -11,7 +11,7 @@
       :root {
         --background-color: #eaf1f2;
         --text-color: #2e474b; /* Tom principal escuro (Azul-petróleo) */
-        --text-color-light: #8ba1a5;
+        --text-color-light: #8ba1a5; /* Tom cinza claro para destaque secundário */
         --border-color: #000000;
         --accent-color: #338d99; /* Tom de destaque (Ciano) */
       }
@@ -77,24 +77,39 @@
         text-align: left;
       }
 
+      /* --- ESTRUTURA DE TÍTULO --- */
+      .title-container {
+        margin-bottom: 5vh;
+      }
+
       .main-title {
         text-align: left;
-        margin: 0 0 5vh 0;
-        font-size: clamp(2.2em, 5vw, 4em);
+        margin: 0;
+        font-size: clamp(2.2em, 5vw, 3.5em); /* <-- O TAMANHO FOI DIMINUÍDO AQUI */
         font-weight: 700;
+        line-height: 1.1;
       }
+
+      .sub-headline {
+        text-align: left;
+        margin: 0.5vh 0 0 0;
+        font-size: clamp(1.2em, 2.5vw, 1.8em);
+        font-weight: 500;
+        color: var(--text-color-light);
+      }
+      /* --- FIM DA ESTRUTURA --- */
 
       .content-wrapper {
         display: flex;
-        flex-direction: row; /* Volta a ser linha para acomodar o ícone */
-        align-items: center; /* Alinha verticalmente a lista e o ícone */
+        flex-direction: row;
+        align-items: center;
         gap: 4vw;
         width: 100%;
         flex-grow: 1;
       }
 
       .main-content {
-        flex: 2; /* Ocupa a maior parte do espaço */
+        flex: 2;
         display: flex;
         flex-direction: column;
         gap: 5vh;
@@ -154,19 +169,21 @@
         box-shadow: 0 10px 22px rgba(46, 71, 75, 0.25);
       }
 
-      /* Coluna do Ícone de Alvo */
+      /* Coluna da Imagem */
       .icon-column {
         flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
-        animation: fadeIn 1.5s ease-out; /* Animação de entrada */
+        animation: fadeIn 1.5s ease-out;
       }
 
       .target-icon {
-        width: clamp(150px, 20vw, 250px);
+        width: clamp(300px, 35vw, 480px); /* Aumentei o tamanho novamente */
         height: auto;
-        color: var(--text-color-light);
+        border-radius: 15px; /* Bordas arredondadas */
+        box-shadow: 0 8px 24px rgba(46, 71, 75, 0.15); /* Sombra sutil */
+        border: 1px solid #dde6e7; /* Borda fina */
       }
 
       @keyframes fadeIn {
@@ -183,10 +200,10 @@
       /* Media Query para telas menores */
       @media (max-width: 900px) {
         .icon-column {
-          display: none; /* Oculta o ícone em telas menores */
+          display: none;
         }
         .main-content {
-          flex: 1; /* Faz o conteúdo principal ocupar todo o espaço */
+          flex: 1;
         }
       }
 
@@ -198,7 +215,10 @@
           width: 8px;
         }
         .main-title {
-          font-size: clamp(2em, 8vw, 2.5em);
+          font-size: clamp(2.5em, 10vw, 3em);
+        }
+        .sub-headline {
+          font-size: clamp(1.1em, 5vw, 1.3em);
         }
         .checklist li {
           font-size: clamp(1em, 4vw, 1.2em);
@@ -223,7 +243,9 @@
         <div class="header-title">Diagnóstico Patrimonial</div>
       </header>
       <main>
-        <h1 class="main-title">CHECKLIST • 1 SIM = REUNIÃO W1</h1>
+        <div class="title-container">
+          <h1 class="main-title">Seu legado PRECISA de uma holding agora?</h1>
+        </div>
 
         <div class="content-wrapper">
           <div class="main-content">
@@ -241,20 +263,11 @@
             </div>
           </div>
           <div class="icon-column">
-            <svg
+            <img
+              src="https://i.postimg.cc/sXF1MbS8/Chat-GPT-Image-27-de-jun-de-2025-17-25-32.png"
+              alt="Ícone de Holding"
               class="target-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path
-                d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
-              ></path>
-              <path
-                d="M12 6c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"
-              ></path>
-              <path d="M12 10c-1.103 0-2 .897-2 2s.897 2 2 2 2-.897 2-2-.897-2-2-2z"></path>
-            </svg>
+            />
           </div>
         </div>
       </main>
