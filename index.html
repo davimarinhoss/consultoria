@@ -3,18 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>O Patrimônio Já Pede uma Holding?</title>
+    <title>CHECKLIST W1</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
       /* Configurações Globais e Variáveis de Cor */
       :root {
         --background-color: #eaf1f2;
-        --text-color: #2e474b;
+        --text-color: #2e474b; /* Tom principal escuro (Azul-petróleo) */
         --text-color-light: #8ba1a5;
         --border-color: #000000;
-        --card-bg-color: #ffffff;
-        --accent-color: #338d99; /* Um tom de ciano para o novo marcador */
+        --accent-color: #338d99; /* Tom de destaque (Ciano) */
       }
 
       /* Garante que a página não tenha margens */
@@ -37,7 +36,6 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        /* Padding responsivo usando unidades de viewport */
         padding: 4vh 6vw;
         box-sizing: border-box;
       }
@@ -62,52 +60,48 @@
       }
 
       .logo img {
-        /* LOGO EM TAMANHO MÁXIMO */
         max-height: 200px;
       }
 
       .header-title {
-        font-size: clamp(0.9em, 1.5vw, 1.2em); /* Fonte responsiva */
+        font-size: clamp(0.9em, 1.5vw, 1.2em);
         color: var(--text-color);
       }
 
       /* Conteúdo Principal */
       main {
         flex-grow: 1;
-        padding-top: 5vh; /* Espaçamento responsivo */
+        padding-top: 5vh;
         display: flex;
         flex-direction: column;
+        text-align: left;
       }
 
       .main-title {
-        /* --- TÍTULO ALINHADO À ESQUERDA --- */
         text-align: left;
-        margin: 0 0 5vh 0; /* Remove margem automática para centralização */
+        margin: 0 0 5vh 0;
         font-size: clamp(2.2em, 5vw, 4em);
         font-weight: 700;
       }
 
-      .main-title .light {
-        color: var(--text-color-light);
-        font-weight: 500;
-      }
-
       .content-wrapper {
         display: flex;
-        flex-direction: row;
+        flex-direction: row; /* Volta a ser linha para acomodar o ícone */
+        align-items: center; /* Alinha verticalmente a lista e o ícone */
         gap: 4vw;
+        width: 100%;
         flex-grow: 1;
       }
 
-      .checklist-column {
-        flex: 2;
-      }
-
-      .results-column {
-        flex: 1;
+      .main-content {
+        flex: 2; /* Ocupa a maior parte do espaço */
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 5vh;
+      }
+
+      .checklist-column {
+        width: 100%;
       }
 
       /* Estilos da lista de perguntas */
@@ -118,65 +112,100 @@
       }
 
       .checklist li {
-        font-size: clamp(0.9em, 1.6vw, 1.1em); /* Fonte responsiva */
-        margin-bottom: clamp(10px, 1.5vh, 15px); /* Espaçamento responsivo */
+        margin-bottom: clamp(15px, 2vh, 20px);
         display: flex;
         align-items: flex-start;
         line-height: 1.5;
+        font-size: clamp(1.1em, 2vw, 1.6em);
+        font-weight: 500;
       }
 
-      /* NOVO DESIGN PARA O MARCADOR [ ] */
       .checklist li::before {
-        content: ""; /* Remove o texto para criar o design com CSS */
-        flex-shrink: 0; /* Impede que o quadrado diminua de tamanho */
+        content: "";
+        flex-shrink: 0;
         width: 1em;
         height: 1em;
-        border: 2px solid var(--accent-color); /* Borda mais estilizada */
+        border: 3px solid var(--accent-color);
         background-color: #fff;
-        border-radius: 4px; /* Bordas levemente arredondadas */
-        margin-right: 15px; /* Espaço entre o quadrado e o texto */
-        margin-top: 0.2em; /* Ajuste fino de alinhamento vertical */
+        border-radius: 4px;
+        margin-right: 18px;
+        margin-top: 0.25em;
         display: inline-block;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidade */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
-      /* Estilos dos cards de resultado */
-      .result-card {
-        background-color: var(--card-bg-color);
-        border-radius: 8px;
-        padding: clamp(15px, 2.5vh, 25px); /* Padding responsivo */
-        border: 1px solid #ddd;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      .cta-button {
+        background-color: var(--text-color);
+        color: #ffffff;
         text-align: center;
-        font-size: clamp(0.85em, 1.5vw, 1em); /* Fonte responsiva */
+        padding: 16px 32px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: clamp(1.1em, 1.8vw, 1.4em);
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 6px 18px rgba(46, 71, 75, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
       }
 
-      .result-card strong {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 1.1em;
+      .cta-button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 22px rgba(46, 71, 75, 0.25);
       }
 
-      #result-0-2 strong {
-        color: #0f5132;
-      }
-      #result-3-6 strong {
-        color: #664d03;
-      }
-      #result-7-10 strong {
-        color: #842029;
+      /* Coluna do Ícone de Alvo */
+      .icon-column {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 1.5s ease-out; /* Animação de entrada */
       }
 
-      /* Media Query para telas menores (ex: mobile na vertical) */
-      @media (max-width: 768px) {
-        .content-wrapper {
-          flex-direction: column; /* Colunas empilhadas */
+      .target-icon {
+        width: clamp(150px, 20vw, 250px);
+        height: auto;
+        color: var(--text-color-light);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
         }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Media Query para telas menores */
+      @media (max-width: 900px) {
+        .icon-column {
+          display: none; /* Oculta o ícone em telas menores */
+        }
+        .main-content {
+          flex: 1; /* Faz o conteúdo principal ocupar todo o espaço */
+        }
+      }
+
+      @media (max-width: 768px) {
         .slide-container {
-          padding: 5vh 8vw; /* Ajusta padding para telas menores */
+          padding: 5vh 8vw;
         }
         .left-border {
-          width: 8px; /* Borda mais fina */
+          width: 8px;
+        }
+        .main-title {
+          font-size: clamp(2em, 8vw, 2.5em);
+        }
+        .checklist li {
+          font-size: clamp(1em, 4vw, 1.2em);
+        }
+        .cta-button {
+          width: 100%;
+          box-sizing: border-box;
         }
       }
     </style>
@@ -194,68 +223,38 @@
         <div class="header-title">Diagnóstico Patrimonial</div>
       </header>
       <main>
-        <h1 class="main-title">
-          O Patrimônio Já Pede uma <span class="light">Holding?</span>
-        </h1>
+        <h1 class="main-title">CHECKLIST • 1 SIM = REUNIÃO W1</h1>
 
         <div class="content-wrapper">
-          <div class="checklist-column">
-            <ul class="checklist">
-              <li>
-                Possui bens imóveis na pessoa física (sua ou de familiares)?
-              </li>
-              <li>
-                Você tem filhos, cônjuge ou dependentes que herdarão seu
-                patrimônio?
-              </li>
-              <li>
-                Você se preocupa com o futuro da sua família após sua ausência?
-              </li>
-              <li>
-                Você é dono de empresa, sócio ou tem participação societária em
-                qualquer negócio?
-              </li>
-              <li>
-                Você é médico, advogado, engenheiro ou atua em área com
-                exposição a processos?
-              </li>
-              <li>Pretende transferir patrimônio para herdeiros?</li>
-              <li>
-                Está preocupado com os custos e prazos de inventário
-                tradicionais?
-              </li>
-              <li>
-                Tem receio de que credores pessoais ou de herdeiros possam
-                atingir seus bens?
-              </li>
-              <li>Recebe aluguel na pessoa física (gerando IRPF alto)?</li>
-              <li>
-                Deseja que o patrimônio continue gerando renda para as próximas
-                gerações?
-              </li>
-            </ul>
+          <div class="main-content">
+            <div class="checklist-column">
+              <ul class="checklist">
+                <li>Imóveis/quotas no CPF?</li>
+                <li>Alguém depende da renda proveniente desses bens?</li>
+                <li>Patrimônio maior que R$ 3 mi ou crescendo rápido?</li>
+                <li>Ainda sem acordo de sucessão?</li>
+                <li>Algum processo ou dívida que possa atingir bens?</li>
+              </ul>
+            </div>
+            <div class="cta-button">
+              → Marque seu “Sim” e agende a call em 30 s.
+            </div>
           </div>
-
-          <div class="results-column">
-            <div class="result-card" id="result-0-2">
-              <strong>0 – 2 SIM</strong>
-              <span
-                >Situação sob controle por ora. Podemos rever anualmente.</span
-              >
-            </div>
-            <div class="result-card" id="result-3-6">
-              <strong>3 – 6 SIM</strong>
-              <span
-                >Fortes indícios de ganho fiscal/jurídico; marcar reunião de
-                diagnóstico.</span
-              >
-            </div>
-            <div class="result-card" id="result-7-10">
-              <strong>7 – 10 SIM</strong>
-              <span
-                >Patrimônio em risco. Agende a consultoria o quanto antes.</span
-              >
-            </div>
+          <div class="icon-column">
+            <svg
+              class="target-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
+              ></path>
+              <path
+                d="M12 6c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"
+              ></path>
+              <path d="M12 10c-1.103 0-2 .897-2 2s.897 2 2 2 2-.897 2-2-.897-2-2-2z"></path>
+            </svg>
           </div>
         </div>
       </main>
